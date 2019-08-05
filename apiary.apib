@@ -1,0 +1,922 @@
+FORMAT: 1A
+HOST: http://polls.apiblueprint.org/
+
+# United
+
+Polls is a simple API allowing consumers to view polls and vote in them.
+
+# Group Account
+
+## Create Account [/create-account]
+
+### Get Create Account [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "banner_text": "<div id="/Panes/"><div><h2>What is Lorem Ipsum?</h2>",
+                "banner_img": "/banner.png",
+                "info": {
+                    "account_type": "<div id="/Panes/"><div><h2>What is Lorem Ipsum?</h2>",
+                    "applicant_details": "<div id="/Panes/"><div><h2>What is Lorem Ipsum?</h2>",
+                    "directors": "<div id="/Panes/"><div><h2>What is Lorem Ipsum?</h2>",
+                    "personal_applicant_details": "<div id="/Panes/"><div><h2>What is Lorem Ipsum?</h2>",
+                    "payment": {
+                        "options": "<div id="/Panes/"><div><h2>What is Lorem Ipsum?</h2>",
+                        "direct_debit": "<div id="/Panes/"><div><h2>What is Lorem Ipsum?</h2>",
+                        "credit_card": "<div id="/Panes/"><div><h2>What is Lorem Ipsum?</h2>",
+                    },
+                    "agreement": "<div id="/Panes/"><div><h2>What is Lorem Ipsum?</h2>",
+                    "signature": "<div id="/Panes/"><div><h2>What is Lorem Ipsum?</h2>"
+                }
+            }
+        ]
+        
+## Account Application Submitted [/account-application-submitted]
+
+### Get Account Application Submitted [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "banner_text": "<div id="/Panes/"><div><h2>What is Lorem Ipsum?</h2>",
+                "banner_img": "/banner.png",
+            }
+        ]
+        
+## Account options [/account-options]
+
+### Get Account options [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "account_type": [
+                    "postpaid",
+                    "prepaid"
+                ],
+                "account_structure": [
+                    "Sole Trader", "Partnership", "Company", "Other"
+                ],
+                "monthly_fuel_spend": [
+                    "$500", "$600", "$700", "$800"
+                ],
+                "industry": [
+                    "Comunications",
+                    "Entertainement",
+                    "Cosmetics",
+                    "Technology",
+                ],
+                "statement_receive_mode": [
+                    "post",
+                    "email",
+                ],
+                "credit_limit": [
+                    "$500", "$600", "$700", "$800"
+                ],
+            }
+        ]
+            
+## Account [/account]
+
+### Get Account [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "account_type": "postpaid",
+                "account_structure": "Sole Trader",
+            }
+        ]
+
+### Create Account [POST]
+
++ Request (application/json)
+
+        {
+            "account_type": "postpaid",
+            "account_structure": "Sole Trader",
+            "details": {
+                "company_abn": 598237465,
+                "business_name": "Intense Group PTY Ltd",
+                "company_acn": 46928374,
+                "business_trading_name": "Intense",
+                "trading_address": "80 Market St",
+                "postal_address": "80 Market St",
+                "name": "Daniel Darvile",
+                "phone": "+61 47556730",
+                "position": "Director",
+                "fax": "+61 47556730",
+                "mobile": "+61 47556730"
+                "email": "daniel@iddigital.com.au",
+                "monthly_fuel_spend": 500,
+                "industry": "Comunications",
+                "statement_receive_mode": "post",
+                "credit_limit": 10000,
+            },
+            "applicants": [
+                    {
+                        "family_name": "Schen",
+                        "given_names": "Daniel",
+                        "address": "2 Market",
+                        "birth_date": "25/06/1984",
+                        "drivers_license_number": 9827346,
+                        "license_registration_state": "Victoria",
+                        "license_expiry_date": "25/06/2020",
+                        "monthly_income": 4000,
+                        "total_assets": 100000,
+                        "total_monthly_expenses": 50000,
+                        "total_liabilities": 50000
+                    }
+            ],
+            "payment_option": {
+                "surname": "Schen",
+                "given_names": "Daniel Darv",
+                "financial_institution_name": "ANZ Bank",
+                "financial_institution_address": "300 Collins",
+                "account_name": "Danzz",
+                "bsb_number": 9827346,
+                "account_number": 28347
+            },
+            "payment_agreement": {
+                "name": "Jay B",
+                "date": "2019-07-29T01:28:29-00:00",
+                "signature": "/applicant-signature.png",
+            },
+            "contract_agreement": [
+                {   
+                    "applicant": {
+                        "name": "Jay B",
+                        "date": "2019-07-29T01:28:29-00:00",
+                        "signature": "/applicant-signature.png",
+                    },
+                    "guarantor": {
+                        "name": "Bob Smith",
+                        "date": "2019-07-29T01:28:29-00:00",
+                        "signature": "/guarantor-signature.png",
+                    }
+                }
+            ]
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /account/2
+
+    + Body
+
+            {
+                "message": "account submitted for approval"
+            }
+
+### Update Account [PUT]
+
++ Request (application/json)
+
+        {
+            "details": {
+                "trading_address": "80 Market St",
+                "postal_address": "80 Market St",
+                "name": "Daniel Darvile",
+                "phone": "+61 47556730",
+                "position": "Director",
+                "fax": "+61 47556730",
+                "mobile": "+61 47556730"
+                "email": "daniel@iddigital.com.au",
+                "monthly_fuel_spend": 500,
+                "industry": "Comunications",
+                "statement_receive_mode": "post",
+                "credit_limit": 10000,
+            },
+            "applicants": [
+                    {
+                        "address": "2 Market",
+                        "license_registration_state": "Victoria",
+                        "license_expiry_date": "date": "2019-07-29T01:28:29-00:00",
+                        "status": "active"
+                    }
+            ],
+            "payment_option": {
+                "surname": "Schen",
+                "given_names": "Daniel Darv",
+                "financial_institution_name": "ANZ Bank",
+                "financial_institution_address": "300 Collins",
+                "account_name": "Danzz",
+                "bsb_number": 9827346,
+                "account_number": 28347
+            },
+            "payment_agreement": {
+                "name": "Jay B",
+                "date": "2019-07-29T01:28:29-00:00",
+                "signature": "/applicant-signature.png",
+            },
+            "contract_agreement": [
+                {   
+                    "applicant": {
+                        "name": "Jay B",
+                        "date": "2019-07-29T01:28:29-00:00",
+                        "signature": "/applicant-signature.png",
+                    },
+                    "guarantor": {
+                        "name": "Bob Smith",
+                        "date": "2019-07-29T01:28:29-00:00",
+                        "signature": "/guarantor-signature.png",
+                    }
+                }
+            ]
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /account/2
+
+    + Body
+
+            {
+                "message": "Cards submitted for approval"
+            }
+            
+# Group Users
+
+## User [/users/{?page}{?queryString}]
+
++ Parameters
+    + page - A path variable that is required for a valid URL
+    + queryString - A query variable
+
+### Get Users [GET]
+
++ Response 200 (application/json)
+
+        [
+            [
+                {
+                    "id": 18723,
+                    "first_name": "John",
+                    "last_name": "Smith",
+                    "email": "bob@gmail.com",
+                    "position": "director",
+                    "phone": "98173246",
+                    "status": "active"
+                }
+            ]
+        ]
+
+## Add User [/add-user]
+
+### Add User [POST]
+
++ Request (application/json)
+
+        {
+            {
+                "id": 18723,
+                "first_name": "John",
+                "last_name": "Smith",
+                "password": "fhlasufub",
+                "email": "bob@gmail.com",
+                "position": "director",
+                "phone": "98173246",
+                "status": "active",
+                "first_day": "2019-07-29T01:28:29-00:00",
+                "last_day": "2019-07-29T01:28:29-00:00",
+                "access_type": "view only",
+                "sections_access": [
+                    "cards",
+                    "invoices"
+                ],
+                "emails_notifications": [
+                    "cards",
+                    "transactions"
+                ],
+                "sms_notifications": [
+                    "cards",
+                    "transactions"
+                ]
+            }
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+    
+            Location: /order-cards/2
+
+    + Body
+
+            {
+                "message" : "User successfully added.",
+            }
+            
+## Update User [/update-user/{id}]
+
++ Parameters
+    + id - User ID
+
+
+### Update User [PUT]
+
++ Request (application/json)
+
+        {
+            {
+                "id": 18723,
+                "first_name": "John",
+                "last_name": "Smith",
+                "password": "fhlasufub",
+                "email": "bob@gmail.com",
+                "position": "director",
+                "phone": "98173246",
+                "status": "active",
+                "first_day": "2019-07-29T01:28:29-00:00",
+                "last_day": "2019-07-29T01:28:29-00:00",
+                "sections_access": [
+                    "cards",
+                    "invoices"
+                ],
+                "emails_notifications": [
+                    "cards",
+                    "transactions"
+                ],
+                "sms_notifications": [
+                    "cards",
+                    "transactions"
+                ]
+            }
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+    
+            Location: /order-cards/2
+
+    + Body
+
+            {
+                "message" : "User successfully added.",
+            }
+
+# Group Cards Order
+## Upload Cards File [/upload-cards-file]
+
+### Upload Cards File [POST]
+
++ Request (application/json)
+
+        {
+            "name": "card-template.xls",
+            "file": (binary)
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+    
+            Location: /order-cards/2
+
+    + Body
+
+            {
+                "file_token" : "di9ii949i4k49i4k94i49",
+                "columns": [
+                            "custom staff member collumn",
+                            "custom registration_number collumn",
+                            "custom company collumn",
+                        ]
+            }
+            
+## Associate Cards [/associate-cards]
+
+### Associate Cards [POST]
+
++ Request (application/json)
+
+        {
+            "file_token" : "di9ii949i4k49i4k94i49",
+            "collumns": {   
+                        "staff_member": "custom staff member collumn",
+                        "registration_number":"custom registration_number collumn",
+                        "company": "custom company collumn",
+                    }
+            }
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+    
+            Location: /order-cards/2
+
+    + Body
+
+            {
+                "card_list": [
+                    {
+                        "id": 18723,
+                        "name_on_card": "John Smith",
+                        "registration": "YXWQD",
+                        "authorized_products": [
+                            "E10 Unleaded",
+                            "E85 Race Blend",
+                            "Car wash",
+                            "Uleaded 91"
+                        ],
+                        "post_address": "Level 4, 80 Market St",
+                        "card_limit": 750,
+                        "call_centre": {
+                            "id": 4567325
+                        }
+                    },
+                    {
+                        "id": 18724,
+                        "name_on_card": "John Smith",
+                        "registration": "YXWQD",
+                        "authorized_products": [
+                            "E10 Unleaded",
+                            "E85 Race Blend",
+                            "Car wash",
+                            "Uleaded 91"
+                        ],
+                        "post_address": "Level 4, 80 Market St",
+                        "card_limit": 750,
+                        "call_centre": {
+                            "id": 4567325
+                        }
+                    }
+                ],
+            }
+
+            
+## Order Cards [/order-cards]
+
+### Order Cards [POST]
+
++ Request (application/json)
+
+        {
+            "file_token" : "di9ii949i4k49i4k94i49"
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+    
+            Location: /order-cards/3
+
+    + Body
+
+            {
+                "message": "Your order has been placed successfully",
+                "order_number": "95fe3f0d8ff86923cac1'
+            }
+            
+# Group User
+            
+## User [/user]
+
+### Get User [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "id": 52,
+                "username": "Daniel Darvile",
+                "account_type": "prepaid",
+                "accessible_companies": [
+                    {
+                        "id": 01,
+                        "company_name": "Company XYZ"
+                    }
+                ]
+            }
+        ]
+        
+## Messages [/messages]
+
+### Get Messages [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "id": 52,
+                "username": "Daniel",
+                "accessible_companies": [
+                    {
+                        "id": 01,
+                        
+                    }
+                ]
+            }
+        ]
+        
+## Notifications [/notifications]
+
+### Get Notifications [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "id": 52,
+                "username": "Daniel",
+                "accessible_companies": [
+                    {
+                        "id": 01
+                    }
+                ]
+            }
+        ]
+            
+            
+# Group Dashboard
+
+## Dashboard [/dashboard]
+
+### Get Dashboard [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "banner_url": "/banner.png",
+                "banner_link": "/banner.png"
+            }
+        ]
+            
+## Cards Overview [/cards-overview]
+
+### Get Cards Overview [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "active_cards": 52,
+                "new_cards": 3,
+                "credit_limit": 8000,
+                "total_credit_available": 4000,
+            }
+        ]
+
+## Cards notifications [/cards-notifications]
+
+### Get Cards Notifications [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                [
+                    {
+                        "card_number": 918234601,
+                        "registration": "YQX123",
+                        "notification_date": "2019-07-29T01:28:29-00:00",
+                        "card_name": "John Smith",
+                        "message": "Card is about to reach their limit"
+                    }
+                ]
+            }
+        ]
+
+
+
+## Tax Invoice Statements Overview [/tax-invoice-overview]
+### Tax Invoice Statements [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "amount_overdue": 1124,
+                "amount_due": 348,
+                "payment_due_date": "2019-07-29T01:28:29-00:00",
+                "last_payment_date": "2019-07-29T01:28:29-00:00",
+            }
+        ]
+        
+        
+## Tax Invoice notifications [/tax-invoice-notifications]
+### Get Tax Invoice Notifications [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                [
+                    {
+                        "statement_number": 918234601,
+                        "registration": "YQX123",
+                        "notification_date": "20/10/2018, 10:00am",
+                        "due_date": "2019-07-29T01:28:29-00:00",
+                        "card_name": "John Smith",
+                        "message": "Card is about to reach their limit"
+                    }
+                ]
+            }
+        ]
+        
+        
+# Group Cards
+            
+## Cards [/cards/{?page}{?queryString}]
+
++ Parameters
+    + page - A path variable that is required for a valid URL
+    + queryString - A query variable
+
+### Get Cards [GET]
+
++ Response 200 (application/json)
+
+        [
+            "card_list": [
+                    {
+                        "id": 18723,
+                        "card_number": 64781239648,
+                        "current_balance": 500,
+                        "name_on_card": "John Smith",
+                        "registration": "YXWQD",
+                        "authorized_products": [
+                            "E10 Unleaded",
+                            "E85 Race Blend",
+                            "Car wash",
+                            "Uleaded 91"
+                        ],
+                        "post_address": "Level 4, 80 Market St",
+                        "card_limit": 750,
+                        "cost_centre": "East Division",
+                        "status": "active"
+                    },
+                   {
+                        "id": 18723,
+                        "card_number": 64781239648,
+                        "current_balance": 500,
+                        "name_on_card": "John Smith",
+                        "registration": "YXWQD",
+                        "authorized_products": [
+                            "E10 Unleaded",
+                            "E85 Race Blend",
+                            "Car wash",
+                            "Uleaded 91"
+                        ],
+                        "post_address": "Level 4, 80 Market St",
+                        "card_limit": 750,
+                        "cost_centre": {
+                            "id": 4567325
+                        },
+                        "status": "active"
+                    },
+                ]
+        ]
+        
+## Cost Centres [/cost-centres]
+
+### Cost Centres [GET]
+
++ Response 200 (application/json)
+
+        [
+            [
+                {
+                    "id": 18723,
+                    "name": "East Coast",
+                    "number_of _cards": 500,
+                },
+                {
+                    "id": 18723,
+                    "name": "East Coast",
+                    "number_of _cards": 500,
+                }
+
+            ]
+        ]
+        
+## Add Cost Centre [/add-cost-centre]
+### Add Cost Centre [POST]
+
++ Request (application/json)
+
+        {
+            {
+                "name": "East Coast",
+            }
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /account/2
+
+    + Body
+
+            {
+                "message": "Cost Centre Successfully added"
+            }
+            
+            
+## Delete Cost Centre  [/delete-cost-centre/{cost_centre_id}]
+
++ Parameters
+    + cost_centre_id (number) - ID of the Question in the form of an integer
+
+### Delete Cost Centre [DELETE]
+
++ Response 204
+        
+## Add Card [/add-card]
+
+### Add Card [POST]
+
++ Request (application/json)
+
+        {
+            "business_name" : "ID Dig",
+            "cost_centre_id" : 76,
+            "name_on_card" : "John Smith",
+            "pin": 12345,
+            "registration": "8afYYH",
+            "date": "2019-07-29T01:28:29-00:00",
+            "status": "active"
+        }
+        
++ Response 201 (application/json)
+
+    + Headers
+    
+            Location: /add-card/2
+
+    + Body
+
+            {
+                "file_token" : "di9ii949i4k49i4k94i49",
+                "columns": [
+                            "custom staff member collumn",
+                            "custom registration_number collumn",
+                            "custom company collumn",
+                        ]
+            }
+            
+## Replace Card [/replace-card/{id}]
+
++ Parameters
+    + id - A id for the card to be replaced
+
+### Replace Card [PUT]
+
++ Request (application/json)
+
+        {
+            "id" 487261,
+            "reason" : "Stolen",
+            "australia_express_post" : true,
+        }
+        
++ Response 201 (application/json)
+
+    + Headers
+    
+            Location: /add-card/2
+
+    + Body
+
+            {
+                "file_token" : "di9ii949i4k49i4k94i49",
+                "columns": [
+                            "custom staff member collumn",
+                            "custom registration_number collumn",
+                            "custom company collumn",
+                        ]
+            }
+            
+## Update Card [/update-card/{id}]
+
+### Update Card [PUT]
+
++ Request (application/json)
+
+        {
+            "business_name" : "ID Dig",
+            "cost_centre_id" : 76,
+            "name_on_card" : "John Smith",
+            "pin": 12345,
+            "registration": "8afYYH",
+            "date": "2019-07-29T01:28:29-00:00",
+            "status": "active",
+            "authorized_products": [
+                    "E10 Unleaded",
+                    "E85 Race Blend",
+                    "Car wash",
+                    "Uleaded 91"
+                ],
+                "limit": {
+                    "type": "Monthly",
+                    "amount": 758
+                },
+                "post_address": "Level 4, 80 Market St",
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+    
+            Location: /update-card/3
+
+    + Body
+
+            {
+                "message": "Your order has been placed successfully",
+                "order_number": "95fe3f0d8ff86923cac1',
+            }
+            
+## Specific Card [/card/{?id}]
+
++ Parameters
+    + id - An id variable that is required for a valid card
+
+### Get Specific Card [GET]
+
++ Response 200 (application/json)
+
+        [
+           {
+                "business_name" : "ID Dig",
+                "cost_centre_id" : 76,
+                "name_on_card" : "John Smith",
+                "pin": 12345,
+                "registration": "8afYYH",
+                "date": "2019-07-29T01:28:29-00:00",
+                "status": "active"
+            }
+        ]
+
+# Group Tax Invoice Statements 
+
+## Get Tax Invoice Statements  [/tax-invoice-statements/{?page}{?queryString}]
+
++ Parameters
+    + page - A path variable that is required for a valid URL
+    + queryString - A query variable
+
+### Get Tax Invoice Statements [GET]
+
++ Response 200 (application/json)
+
+        [
+            [
+                    {
+                        "id": 18723,
+                        "statement_number": 64781239648,
+                        "date": "2019-07-29T01:28:29-00:00",
+                        "due_date": "2019-07-29T01:28:29-00:00",
+                        "transactions": 55,
+                        "total": 1112,
+                    }
+                ]
+        ]
+        
+# Group Transactions
+
+## Get Transactions  [/transactions/{?page}{?queryString}]
+
++ Parameters
+    + page - A path variable that is required for a valid URL
+    + queryString - A query variable
+
+### Get Transactions [GET]
+
++ Response 200 (application/json)
+
+        [
+            [
+                    {
+                        "id": 18723,
+                        "transaction_number": 64781239648,
+                        "date": "2019-07-29T01:28:29-00:00",
+                        "location": "South Melnourne",
+                        "name_on_card": "John Smith",
+                        "amount": 78,
+                        "cost centre": "East Division",
+                    },
+                    {
+                        "id": 18724,
+                        "transaction_number": 647812396123,
+                        "date": "2019-07-29T01:28:29-00:00",
+                        "location": "South Melnourne",
+                        "name_on_card": "John Smith",
+                        "amount": 78,
+                        "cost centre": "East Division",
+                    },
+                ]
+        ]
