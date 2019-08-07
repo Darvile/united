@@ -5,6 +5,68 @@ HOST: http://polls.apiblueprint.org/
 
 Polls is a simple API allowing consumers to view polls and vote in them.
 
+# Group Landing
+
+## Landing [/landing]
+
+### Get Landing [GET]
+
++ Response 200 (application/json)
+
+        {   
+            "banner_title": "Manage Your Business Fuel Expenses with a United Card",
+            "banner_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "banner_img": "/banner.png"
+        }
+        
+# Group Autho
+
+## Login [/login]
+
+### Login [POST]
+
++ Request (application/json)
+
+        {
+            "email": "dan@gmail.com",
+            "password": "dkjahsgd"
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /login/2
+
+    + Body
+
+            {
+                "api_token": "lafkjsdhfasf7a6"
+            }
+            
+## Logout [/logout]
+
+### Logout [POST]
+
++ Request (application/json)
+
+        {
+            "email": "dan@gmail.com",
+            "password": "dkjahsgd"
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /login/2
+
+    + Body
+
+            {
+                "api_token": "lafkjsdhfasf7a6"
+            }
+
 # Group Account
 
 ## Create Account [/create-account]
@@ -13,25 +75,24 @@ Polls is a simple API allowing consumers to view polls and vote in them.
 
 + Response 200 (application/json)
 
-        [
-            {
-                "banner_text": "<div id="/Panes/"><div><h2>What is Lorem Ipsum?</h2>",
-                "banner_img": "/banner.png",
-                "info": {
-                    "account_type": "<div id="/Panes/"><div><h2>What is Lorem Ipsum?</h2>",
-                    "applicant_details": "<div id="/Panes/"><div><h2>What is Lorem Ipsum?</h2>",
-                    "directors": "<div id="/Panes/"><div><h2>What is Lorem Ipsum?</h2>",
-                    "personal_applicant_details": "<div id="/Panes/"><div><h2>What is Lorem Ipsum?</h2>",
-                    "payment": {
-                        "options": "<div id="/Panes/"><div><h2>What is Lorem Ipsum?</h2>",
-                        "direct_debit": "<div id="/Panes/"><div><h2>What is Lorem Ipsum?</h2>",
-                        "credit_card": "<div id="/Panes/"><div><h2>What is Lorem Ipsum?</h2>",
-                    },
-                    "agreement": "<div id="/Panes/"><div><h2>What is Lorem Ipsum?</h2>",
-                    "signature": "<div id="/Panes/"><div><h2>What is Lorem Ipsum?</h2>"
-                }
+        {
+            "banner_text": "<div id="/Panes/"><div><h2>What is Lorem Ipsum?</h2>",
+            "banner_img": "/banner.png",
+            "info": {
+                "account_type": "<div id="/Panes/"><div><h2>What is Lorem Ipsum?</h2>",
+                "applicant_details": "<div id="/Panes/"><div><h2>What is Lorem Ipsum?</h2>",
+                "directors": "<div id="/Panes/"><div><h2>What is Lorem Ipsum?</h2>",
+                "personal_applicant_details": "<div id="/Panes/"><div><h2>What is Lorem Ipsum?</h2>",
+                "payment": {
+                    "options": "<div id="/Panes/"><div><h2>What is Lorem Ipsum?</h2>",
+                    "direct_debit": "<div id="/Panes/"><div><h2>What is Lorem Ipsum?</h2>",
+                    "credit_card": "<div id="/Panes/"><div><h2>What is Lorem Ipsum?</h2>",
+                },
+                "agreement": "<div id="/Panes/"><div><h2>What is Lorem Ipsum?</h2>",
+                "signature": "<div id="/Panes/"><div><h2>What is Lorem Ipsum?</h2>"
             }
-        ]
+        }
+        
         
 ## Account Application Submitted [/account-application-submitted]
 
@@ -246,7 +307,56 @@ Polls is a simple API allowing consumers to view polls and vote in them.
             
 # Group Users
 
-## User [/users/{?page}{?queryString}]
+## User [/user/{id}]
+
+### Get User [GET]
+
++ Parameters
+    + id - A path variable that is required for a valid URL
+
++ Response 200 (application/json)
+
+        {
+            "id": 52,
+            "first_name": "John",
+            "last_name": "Smith",
+            "password": "fhlasufub",
+            "email": "bob@gmail.com",
+            "position": "director",
+            "phone": "98173246",
+            "status": "active",
+            "first_day": "2019-07-29T01:28:29-00:00",
+            "last_day": "2019-07-29T01:28:29-00:00",
+            "access_type": "view only",
+            "username": "Bob123",
+            "account_type": "prepaid",
+            "sections_access": [
+                "cards",
+                "invoices"
+            ],
+            "emails_notifications": [
+                "cards",
+                "transactions"
+            ],
+            "sms_notifications": [
+                "cards",
+                "transactions"
+            ],
+            "accessible_companies": [
+                {
+                    "company_name": "Company XYZ",
+                    "id": 1024
+                }, {
+                    "company_name": "Company ABC",
+                    "id": 1025
+                }, {
+                    "company_name": "Company WAH",
+                    "id": 1026
+                }
+            ]
+        }
+
+## Users [/users/{?page}{?queryString}]
 
 + Parameters
     + page - A path variable that is required for a valid URL
@@ -269,6 +379,7 @@ Polls is a simple API allowing consumers to view polls and vote in them.
                 }
             ]
         ]
+        
 
 ## Add User [/add-user]
 
@@ -478,28 +589,6 @@ Polls is a simple API allowing consumers to view polls and vote in them.
                 "message": "Your order has been placed successfully",
                 "order_number": "95fe3f0d8ff86923cac1'
             }
-            
-# Group User
-            
-## User [/user]
-
-### Get User [GET]
-
-+ Response 200 (application/json)
-
-        [
-            {
-                "id": 52,
-                "username": "Daniel Darvile",
-                "account_type": "prepaid",
-                "accessible_companies": [
-                    {
-                        "id": 01,
-                        "company_name": "Company XYZ"
-                    }
-                ]
-            }
-        ]
         
 ## Messages [/messages]
 
