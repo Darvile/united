@@ -50,21 +50,62 @@ Polls is a simple API allowing consumers to view polls and vote in them.
 
 + Request (application/json)
 
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /logout/2
+
+    + Body
+
+            {
+                "message": "User successfully logged out"
+            }
+            
+## Reset Password Link [/password/email]
+
+### Reset Password Link [POST]
+
++ Request (application/json)
+
         {
-            "email": "dan@gmail.com",
-            "password": "dkjahsgd"
+            "email": "d@gmail.com"
+        }
+    
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /password/email/2
+
+    + Body
+
+            {
+                "message": "Password successfully updated."
+            }
+            
+            
+## Reset Password [/password/reset]
+
+### Reset Password [POST]
+
++ Request (application/json)
+
+        {
+            "token": "kdjhasgfdksjdtfe",
+            "password": "password"
         }
 
 + Response 201 (application/json)
 
     + Headers
 
-            Location: /login/2
+            Location: /reset-password/2
 
     + Body
 
             {
-                "api_token": "lafkjsdhfasf7a6"
+                "message": "Password Succesfully updated"
             }
 
 # Group Account
