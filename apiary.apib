@@ -346,14 +346,35 @@ Polls is a simple API allowing consumers to view polls and vote in them.
                 "message": "Cards submitted for approval"
             }
             
+## Update Company [/update-company/{id}]
+            
+### Update Company [PUT]
+
++ Request (application/json)
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /update-company/2
+
+    + Body
+
+            {
+                "message": "Account updated"
+            }
+            
 # Group Users
 
-## User [/user/{id}]
+## User [/user/{?id}{?company_id}]
+
+Note: Remove query string
 
 ### Get User [GET]
 
 + Parameters
-    + id - A path variable that is required for a valid URL
+    + id (number)- The id of the user(optional)
+    + company_id (number)- The id of the company(optional)
 
 + Response 200 (application/json)
 
@@ -383,15 +404,19 @@ Polls is a simple API allowing consumers to view polls and vote in them.
                 "cards",
                 "transactions"
             ],
+            "active_company": {
+                    "name": "Company XYZ",
+                    "id": 1024
+            },
             "accessible_companies": [
                 {
-                    "company_name": "Company XYZ",
+                    "name": "Company XYZ",
                     "id": 1024
                 }, {
-                    "company_name": "Company ABC",
+                    "name": "Company ABC",
                     "id": 1025
                 }, {
-                    "company_name": "Company WAH",
+                    "name": "Company WAH",
                     "id": 1026
                 }
             ]
@@ -637,18 +662,57 @@ Polls is a simple API allowing consumers to view polls and vote in them.
 
 + Response 200 (application/json)
 
-        [
-            {
-                "id": 52,
-                "username": "Daniel",
-                "accessible_companies": [
-                    {
-                        "id": 01,
-                        
-                    }
-                ]
-            }
-        ]
+        {   
+            "banner_info": {
+                "text": "<p>What is Lorem Ipsum?</p>",
+                "img": "/img/banner.png",
+                "title": "Messages banner"
+            },
+            "messages": [
+                {
+                    "id": 52,
+                    "date": "2019-07-29T01:28:29-00:00",
+                    "title": "New & Improved Card Portal",
+                    "content": "<blockquote>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</blockquote>",
+                    "hasRead": false,
+                    "img": "img/banner.png"
+                },
+                {
+                    "id": 49,
+                    "date": "2019-07-29T01:28:29-00:00",
+                    "title": "New & Improved Card Portal",
+                    "content": "<blockquote>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</blockquote>",
+                    "hasRead": false,
+                    "img": "img/banner.png"
+                },
+                {
+                    "id": 57,
+                    "date": "2019-07-29T01:28:29-00:00",
+                    "title": "New & Improved Card Portal",
+                    "content": "<blockquote>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</blockquote>",
+                    "hasRead": false,
+                    "img": "img/banner.png"
+                },
+                {
+                    "id": 53,
+                    "date": "2019-07-29T01:28:29-00:00",
+                    "title": "New Message",
+                    "content": "<blockquote>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</blockquote>",
+                    "hasRead": true,
+                    "img": ""
+                }
+            ]
+        }
+        
+## Update Message Status [/update-message-status/{id}]
+
+### Update Message Status [PUT]
+
++ Response 200 (application/json)
+
+        {
+            "message": "Message successfully updated"
+        }
         
 ## Notifications [/notifications]
 
@@ -658,15 +722,44 @@ Polls is a simple API allowing consumers to view polls and vote in them.
 
         [
             {
+                "created_at": "2019-07-29T01:28:29-00:00",
+                "type": "card",
+                "hasRead": false,
                 "id": 52,
-                "username": "Daniel",
-                "accessible_companies": [
-                    {
-                        "id": 01
-                    }
-                ]
+                "message": "<p>The card is about to expire <a href='invoices/6578239'>Card link</a></p>"
+            },
+            {
+                "created_at": "2019-07-29T01:28:29-00:00",
+                "type": "invoice",
+                "hasRead": true,
+                "id": 53,
+                "message": "<p>The card is about to expire <a href='invoices/6578239'>Invoice link</a></p>"
+            },
+             {
+                "created_at": "2019-07-29T01:28:29-00:00",
+                "type": "transaction",
+                "hasRead": false,
+                "id": 72,
+                "message": "<p>The card is about to expire <a href='invoices/6578239'>Transaction link</a></p>"
+            },
+            {
+                "created_at": "2019-07-29T01:28:29-00:00",
+                "type": "invoice",
+                "hasRead": false,
+                "id": 83,
+                "message": "<p>The card is about to expire <a href='invoices/6578239'>Invoice link</a></p>"
             }
         ]
+        
+## Update Notification Status [/update-notification-status/{id}]
+
+### Update Notification Status [PUT]
+
++ Response 200 (application/json)
+
+        {
+            "message": "Notification successfully updated"
+        }
             
             
 # Group Dashboard
