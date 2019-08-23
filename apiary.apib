@@ -5,6 +5,50 @@ HOST: http://polls.apiblueprint.org/
 
 Polls is a simple API allowing consumers to view polls and vote in them.
 
+# Shared Requests
+## Preview Stats [/preview-stats]
+
+### Preview Stats [GET]
+
++ Response 200 (application/json)
+
+        {
+            "cards": [
+                {
+                    "title": "52",
+                    "subtitle": "<p>Active cards on your account</p>",
+                    "status": "success"
+                },
+                {
+                    "title": "3",
+                    "subtitle": "<p>New cards are currently on way to you.</p>",
+                    "status": ""
+                },
+                {
+                    "title": "",
+                    "subtitle": "<div><p>Active cards on your account</p></div>",
+                    "status": "success"
+                }
+            ],
+            "invoices": [
+                {
+                    "title": "$1,154",
+                    "subtitle": "<p>Due 25 April 2019</p>",
+                    "status": "error"
+                },
+                {
+                    "title": "$348",
+                    "subtitle": "<p>Due 25 April 2019</p>",
+                    "status": ""
+                },
+                {
+                    "title": "1/11/18",
+                    "subtitle": "<p>Last payment received</p>",
+                    "status": "success"
+                }
+            ]
+        }
+
 # Group Landing
 
 ## Landing [/landing]
@@ -731,7 +775,7 @@ Note: Remove query string
             {
                 "created_at": "2019-07-29T01:28:29-00:00",
                 "type": "invoice",
-                "hasRead": true,
+                "hasRead": false,
                 "id": 53,
                 "message": "<p>The card is about to expire <a href='invoices/6578239'>Invoice link</a></p>"
             },
@@ -770,12 +814,12 @@ Note: Remove query string
 
 + Response 200 (application/json)
 
-        [
-            {
-                "banner_url": "/banner.png",
-                "banner_link": "/banner.png"
+        {
+            "banner_info": {
+                "url": "https://www.unitedpetroleum.com.au/",
+                "img": "/img/promo-banner.jpg"
             }
-        ]
+        }
             
 ## Cards Overview [/cards-overview]
 
