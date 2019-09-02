@@ -6,6 +6,7 @@ HOST: http://polls.apiblueprint.org/
 Polls is a simple API allowing consumers to view polls and vote in them.
 
 # Shared Requests
+        
 ## Preview Stats [/preview-stats]
 
 ### Preview Stats [GET]
@@ -913,57 +914,39 @@ Note: Remove query string
         
 # Group Cards
             
-## Cards [/cards/{?page}{?queryString}]
+## Card List [/card-list/{?current_page}{?order_by}{?order_dir}{?keyword}]
 
 + Parameters
-    + page - A path variable that is required for a valid URL
-    + queryString - A query variable
+    + current_page - A path variable that is required for a the current page
+    + keyword - A query variable
+    + order_by - Order by
+    + order_dir - Order direction
 
 ### Get Cards [GET]
 
 + Response 200 (application/json)
 
-        [
-            "card_list": [
+        {
+            "total_pages": 5,
+            "current_page": 2,
+            "order_by": "registration",
+            "keyword": "63419287",
+            "list": {
+                "columns": ["Card#", "Registration", "Name on Card", "Current Balance", "Cost Centre", "Status"],
+                "data": [
                     {
-                        "id": 18723,
-                        "card_number": 64781239648,
-                        "current_balance": 500,
+                        "id": 1,
+                        "card_number": 9285462487356,
+                        "card_registration": "IUYTBJH",
                         "name_on_card": "John Smith",
-                        "registration": "YXWQD",
-                        "authorized_products": [
-                            "E10 Unleaded",
-                            "E85 Race Blend",
-                            "Car wash",
-                            "Uleaded 91"
-                        ],
-                        "post_address": "Level 4, 80 Market St",
-                        "card_limit": 750,
+                        "current_balance": 2000,
                         "cost_centre": "East Division",
                         "status": "active"
-                    },
-                   {
-                        "id": 18723,
-                        "card_number": 64781239648,
-                        "current_balance": 500,
-                        "name_on_card": "John Smith",
-                        "registration": "YXWQD",
-                        "authorized_products": [
-                            "E10 Unleaded",
-                            "E85 Race Blend",
-                            "Car wash",
-                            "Uleaded 91"
-                        ],
-                        "post_address": "Level 4, 80 Market St",
-                        "card_limit": 750,
-                        "cost_centre": {
-                            "id": 4567325
-                        },
-                        "status": "active"
-                    },
+                    }
                 ]
-        ]
-        
+            }
+        }
+    
 ## Cost Centres [/cost-centres]
 
 ### Cost Centres [GET]
