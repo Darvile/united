@@ -913,6 +913,18 @@ Note: Remove query string
         
         
 # Group Cards
+
+## Cards Info [/card-info]
+
+### Get Cards Info [GET]
+
++ Response 200 (application/json)
+
+        {   
+            "title": "Manage Your Business Fuel Expenses with a United Card",
+            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "img": "/img/banner.png"
+        }
             
 ## Card List [/card-list/{?current_page}{?order_by}{?order_dir}{?keyword}]
 
@@ -1147,7 +1159,19 @@ Note: Remove query string
             }
         ]
 
-# Group Tax Invoice Statements 
+# Group Tax Invoice Statements
+
+## Invoices Info [/invoices-info]
+
+### Get Invoices Info [GET]
+
++ Response 200 (application/json)
+
+        {   
+            "title": "Manage Your Business Fuel Expenses with a United Card",
+            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "img": "/img/banner.png"
+        }
 
 ## Get Tax Invoice Statements  [/tax-invoice-statements/{?page}{?queryString}]
 
@@ -1173,6 +1197,18 @@ Note: Remove query string
         ]
         
 # Group Transactions
+
+## Transactions Info [/transactions-info]
+
+### Get Transactions Info [GET]
+
++ Response 200 (application/json)
+
+        {   
+            "title": "Manage Your Business Fuel Expenses with a United Card",
+            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "img": "/img/banner.png"
+        }
 
 ## Transaction List [/transaction-list/{?current_page}{?order_by}{?order_dir}{?keyword}]
 
@@ -1245,7 +1281,7 @@ Note: Remove query string
                         "location": "South Melnourne",
                         "name_on_card": "John Smith",
                         "amount": 78,
-                        "cost centre": "East Division",
+                        "cost centre": "East Division"
                     },
                     {
                         "id": 18724,
@@ -1254,7 +1290,58 @@ Note: Remove query string
                         "location": "South Melnourne",
                         "name_on_card": "John Smith",
                         "amount": 78,
-                        "cost centre": "East Division",
-                    },
+                        "cost centre": "East Division"
+                    }
                 ]
         ]
+        
+# Group Invoices
+        
+## Invoice List [/invoice-list/{?current_page}{?order_by}{?order_dir}{?keyword}]
+
++ Parameters
+    + current_page - A path variable that is required for a the current page
+    + keyword - A query variable
+    + order_by - Order by
+    + order_dir - Order direction
+
+### Get Invoice List [GET]
+
++ Response 200 (application/json)
+
+        {
+            "total_pages": 5,
+            "current_page": 2,
+            "order_by": "registration",
+            "order_dir": "asc",
+            "keyword": "63419287",
+            "list": {
+                "columns": ["Statement#", "Date", "Due Date", "Transactions", "Statement Total"],
+                "data": [
+                    {
+                        "id": 1,
+                        "statement_number": 9285462487356,
+                        "created_at": "2019-07-29T01:28:29-00:00",
+                        "due_date": "2019-07-29T01:28:29-00:00",
+                        "transactions": 54,
+                        "statement_total": "$1,123,00"
+                    },
+                    {
+                        "id": 2,
+                        "statement_number": 9285462487356,
+                        "created_at": "2019-07-29T01:28:29-00:00",
+                        "due_date": "2019-07-29T01:28:29-00:00",
+                        "transactions": 54,
+                        "statement_total": "$1,123,00"
+                    },
+                    {
+                        "id": 3,
+                        "statement_number": 9285462487356,
+                        "created_at": "2019-07-29T01:28:29-00:00",
+                        "due_date": "2019-07-29T01:28:29-00:00",
+                        "transactions": 54,
+                        "statement_total": "$1,123,00"
+                    }
+                ]
+            }
+        }
