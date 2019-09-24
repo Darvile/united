@@ -462,7 +462,19 @@ Polls is a simple API allowing consumers to view polls and vote in them.
             ],
             "active_company": {
                     "name": "Company XYZ",
-                    "id": 1024
+                    "id": 1024,
+                    "cost_centres": [
+                    {
+                        "id": 18723,
+                        "name": "East Coast",
+                        "number_of _cards": 500
+                    },
+                    {
+                        "id": 18723,
+                        "name": "West Coast",
+                        "number_of _cards": 500
+                    }
+                ]
             },
             "accessible_companies": [
                 {
@@ -599,6 +611,18 @@ Polls is a simple API allowing consumers to view polls and vote in them.
             }
 
 # Group Cards Order
+## Request Cards in Bulk [/request-cards-in-bulk]
+
+### Request Cards in Bulk [GET]
+
++ Response 200 (application/json)
+
+        {   
+            "card_template_link": "/upload-cards-template",
+            "fields": [
+                "Name on Card", "Registration", "Authorized Products", "Send to Specific Address", "Card Limit", "Assign to Cost Centre"
+            ]
+        }
 ## Upload Cards File [/upload-cards-file]
 
 ### Upload Cards File [POST]
@@ -610,7 +634,7 @@ Polls is a simple API allowing consumers to view polls and vote in them.
             "file": (binary)
         }
 
-+ Response 201 (application/json)
++ Response 200 (application/json)
 
     + Headers
     
@@ -635,57 +659,25 @@ Polls is a simple API allowing consumers to view polls and vote in them.
 
         {
             "file_token" : "di9ii949i4k49i4k94i49",
-            "collumns": {   
-                        "staff_member": "custom staff member collumn",
-                        "registration_number":"custom registration_number collumn",
-                        "company": "custom company collumn",
-                    }
-            }
+            "columns": ["column 1", "column 2", "column3", "column4", "column5"]
         }
 
 + Response 201 (application/json)
 
     + Headers
     
-            Location: /order-cards/2
+            Location: /associate-cards/2
 
     + Body
 
             {
-                "card_list": [
-                    {
-                        "id": 18723,
-                        "name_on_card": "John Smith",
-                        "registration": "YXWQD",
-                        "authorized_products": [
-                            "E10 Unleaded",
-                            "E85 Race Blend",
-                            "Car wash",
-                            "Uleaded 91"
-                        ],
-                        "post_address": "Level 4, 80 Market St",
-                        "card_limit": 750,
-                        "call_centre": {
-                            "id": 4567325
-                        }
-                    },
-                    {
-                        "id": 18724,
-                        "name_on_card": "John Smith",
-                        "registration": "YXWQD",
-                        "authorized_products": [
-                            "E10 Unleaded",
-                            "E85 Race Blend",
-                            "Car wash",
-                            "Uleaded 91"
-                        ],
-                        "post_address": "Level 4, 80 Market St",
-                        "card_limit": 750,
-                        "call_centre": {
-                            "id": 4567325
-                        }
-                    }
-                ],
+                "columns": ["column 1", "column 2", "column3", "column4", "column5"],
+                "info": [
+                    ["John Smith", "YQ123", "E10 Unleaded, Diesel", "Level 4, 80 Market St", "$750,00"],
+                    ["John Smith", "YQ123", "E10 Unleaded, Diesel", "Level 4, 80 Market St", "$750,00"],
+                    ["John Smith", "YQ123", "E10 Unleaded, Diesel", "Level 4, 80 Market St", "$750,00"],
+                    ["John Smith", "YQ123", "E10 Unleaded, Diesel", "Level 4, 80 Market St", "$750,00"]
+                ]
             }
 
             
@@ -978,21 +970,9 @@ Polls is a simple API allowing consumers to view polls and vote in them.
 
 + Response 200 (application/json)
 
-        [
-            [
-                {
-                    "id": 18723,
-                    "name": "East Coast",
-                    "number_of _cards": 500,
-                },
-                {
-                    "id": 18723,
-                    "name": "East Coast",
-                    "number_of _cards": 500,
-                }
-
-            ]
-        ]
+        {
+            "info": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquet metus massa, non tincidunt nisi convallis eget. Phasellus iaculis eros orci, in pellentesque felis rutrum non. Quisque sed ullamcorper nisl. Integer placerat libero sed pellentesque vehicula. Praesent congue sodales massa sed imperdiet. Vivamus ligula velit, pulvinar vel elit imperdiet, ullamcorper blandit nibh. Nulla condimentum at purus ac posuere.</p>"
+        }
         
 ## Add Cost Centre [/add-cost-centre]
 ### Add Cost Centre [POST]
@@ -1129,7 +1109,7 @@ Polls is a simple API allowing consumers to view polls and vote in them.
 
             {
                 "message": "Your order has been placed successfully",
-                "order_number": "95fe3f0d8ff86923cac1',
+                "order_number": "95fe3f0d8ff86923cac1",
             }
             
 ## Specific Card [/card/{?id}]
