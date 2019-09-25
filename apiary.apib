@@ -464,17 +464,18 @@ Polls is a simple API allowing consumers to view polls and vote in them.
                     "name": "Company XYZ",
                     "id": 1024,
                     "cost_centres": [
-                    {
-                        "id": 18723,
-                        "name": "East Coast",
-                        "number_of _cards": 500
-                    },
-                    {
-                        "id": 18723,
-                        "name": "West Coast",
-                        "number_of _cards": 500
-                    }
-                ]
+                        {
+                            "id": 23,
+                            "name": "East Coast",
+                            "cards": 124
+                        },
+                        {
+                            "id": 3,
+                            "name": "West Coast",
+                            "cards": 24
+                        }
+                    ]
+                
             },
             "accessible_companies": [
                 {
@@ -995,6 +996,28 @@ Polls is a simple API allowing consumers to view polls and vote in them.
 
             {
                 "message": "Cost Centre Successfully added"
+            }
+            
+## Update Cost Centre [/update-cost-centre/{id}]
+            
+### Update Cost Centre [PUT]
+
++ Request (application/json)
+
+        {
+            "name" : "New Cost Centre"
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /update-cost-centre/2
+
+    + Body
+
+            {
+                "message": "Cost Centre updated"
             }
             
             
